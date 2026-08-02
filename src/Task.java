@@ -1,14 +1,14 @@
-package entities;
-
 import java.time.LocalDateTime;
 
 public class Task {
 
+    private static Integer taskID = 0;
+
     private Integer id;
     private String description;
     private Status status;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private String createdAt;
+    private String updatedAt;
 
     // No args Constructor
     public Task() {
@@ -17,7 +17,7 @@ public class Task {
 
     // All arguments Constructor
     public Task(Integer id, String description, 
-        Status status, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        Status status, String createdAt, String updatedAt) {
         
             this.id = id;
             this.description = description;
@@ -29,6 +29,11 @@ public class Task {
 
 
     // Getters and Setters
+
+    public Integer getTaskID() {
+        return Task.taskID;
+    }
+
     public Integer getId() {
         return this.id;
     }
@@ -41,12 +46,16 @@ public class Task {
         return this.status;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public String getCreatedAt() {
         return this.createdAt;
     }
 
-    public LocalDateTime getUpdatedAt() {
+    public String getUpdatedAt() {
         return this.updatedAt;
+    }
+
+    public void setTaskID(Integer taskID) {
+        Task.taskID = taskID;
     }
 
     public void setId(Integer id) {
@@ -61,12 +70,26 @@ public class Task {
         this.status = status;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String toString() {
+        return "Id: " + this.id + 
+               "\nDescription: " + this.description + 
+               "\nStatus: " + this.status + 
+               "\nCreated At: " + this.createdAt + 
+               "\nUpdated At: " + this.updatedAt + 
+               "\n";
+    }
+
+    // JSON Conversions
+    public String toJson() {
+        return "{\n\t\"Id\": " + this.id + ",\n\t\"Description\": " + "\"" + this.description + "\"" + ",\n\t\"Status\": " + "\"" + this.status + "\"" + ",\n\t\"Created At\": " + "\"" + this.createdAt + "\"" + ",\n\t\"Updated\": " + "\"" + this.updatedAt + "\"" + "\n}" + "\n";
     }
 
 }
